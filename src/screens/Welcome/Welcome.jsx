@@ -1,43 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Welcome.css";
 import { Button } from "../../components/Button";
+import "./Welcome.css";
 
 export const Welcome = () => {
-    let navigate = useNavigate();
+	const [isQrLoading, setIsQrLoading] = useState(false);
+    const [qrUrl, setQrUrl] = useState();
+	let navigate = useNavigate();
 
-    return (
-        <div className="h-full flex flex-col space-y-8 justify-between align-center items-center">
-            <div className="h-1/2 w-full bg-term-orange text-center flex flex-row items-center justify-center p-16 overflow-hidden relative">
-                <img src="computers-bg.jpg" alt="" className="absolute w-[105%] h-[105%] object-cover blur-sm" />
+	function handleClick () {
+		// TODO: Fire auth request, receive QR
+		setIsQrLoading(true);
+		mockAuthReq()
+			.then(() => {
+				setIsQrLoading(false);
+				setQrUrl('example.com');
+			});
+	}
+    
+	function mockAuthReq () {
+		return new Promise((resolve, reject) => {
+			setTimeout(resolve, 1000);
+		});
+	}
+
+	return (
+		<div className="">
+            <h1 className="">
+				Big Message
+			</h1>
                 
-                <h1 className="sr-only">
-                    Terminus Electric Money Laboratory
-                </h1>
-                
-                <img src="terminus-logo.svg" alt="" className="h-full relative z-50" />
-            </div>
-            <div className="h-1/2 w-full p-8 text-center flex flex-col items-center justify-start space-y-12">
-                <h1 className="text-4xl w-1/2">
-                    Congratulations, pleb.<br />You’re coming to <strong>Terminus</strong>.
-                </h1>
-                
-                <ol className="text-2xl space-y-4">
-                    <li>Use lightning fast internet</li>
-                    <li>Enjoy coffee and snacks</li>
-                    <li>Work with ATL bitcoiners</li>
-                </ol>
-                
-                <Button
-                    onClick={() => {
-                        navigate("/deals");
-                    }}
-                >
-                    <span>Hell Yeah</span>
-                    <span>🔥</span>
-                </Button>
-            </div>
-            
+			<p>Smaller message.</p>
+
+			{!!qrUrl ?
+				<div style={{width: "100px", height: "100px", border:"1px solid black" }}>QR</div> :
+				<Button onClick={handleClick}>
+					{isQrLoading? "Loading..." : "Button Text"}
+				</Button>
+			}
         </div>
     );
 };
