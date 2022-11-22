@@ -1,0 +1,27 @@
+.welcome-main-content {
+	text-align: center;
+	margin: auto;
+}
+
+.welcome-heading {
+	font-size: 2em;
+	font-weight: 500;
+}
+
+.welcome-message {
+}
+
+.auth-btn {
+	padding: 1rem;
+	border: 1px solid black;
+}
+
+.qr-container {
+}
+
+.mock-qr {
+	height: 200px;
+	width: 200px;
+	border: 1px solid black;
+	margin: auto;
+}

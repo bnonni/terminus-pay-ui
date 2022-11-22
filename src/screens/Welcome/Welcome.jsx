@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../components/Button";
 import "./Welcome.css";
 
 export const Welcome = () => {
@@ -25,19 +24,21 @@ export const Welcome = () => {
 	}
 
 	return (
-		<div className="">
-            <h1 className="">
-				Big Message
+		<div className="welcome-main-content">
+            <h1 className="welcome-heading">
+				Welcome
 			</h1>
                 
-			<p>Smaller message.</p>
-
-			{!!qrUrl ?
-				<div style={{width: "100px", height: "100px", border:"1px solid black" }}>QR</div> :
-				<Button onClick={handleClick}>
-					{isQrLoading? "Loading..." : "Button Text"}
-				</Button>
-			}
+			<p className="welcome-message">Smaller message.</p>
+			
+			<div className="qr-container">
+				{!!qrUrl ?
+					<div className="mock-qr">QR</div> :
+					<button className="auth-btn" onClick={handleClick}>
+						{ isQrLoading ? "Loading..." : "Button Text" }
+					</button>
+				}
+			</div>
         </div>
     );
 };
